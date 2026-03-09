@@ -1,0 +1,97 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block admin_content %}
+
+<section class="py-5 bg-light">
+    <div class="container px-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow rounded-4 border-0">
+                    <div class="card-body p-5">
+
+                        {{ form_start(form) }}
+
+                            <div class="mb-3">
+                                {{ form_label(form.title) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.title) }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form_label(form.schoolName) }}
+                                {{ form_widget(form.schoolName, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.schoolName) }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form_label(form.schoolCity) }}
+                                {{ form_widget(form.schoolCity, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.schoolCity) }}
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    {{ form_label(form.startYear) }}
+                                    {{ form_widget(form.startYear, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.startYear) }}
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    {{ form_label(form.endYear) }}
+                                    {{ form_widget(form.endYear, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.endYear) }}
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+
+                                    <div class="form-check mt-4">
+
+                                        {{ form_widget(form.current, {'attr': {'class': 'form-check-input'}}) }}
+
+                                        {{ form_label(form.current, null, {
+                                            'label_attr': {'class': 'form-check-label'}
+                                        }) }}
+
+                                        {{ form_errors(form.current) }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-4">
+                                {{ form_label(form.description) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+                                {{ form_errors(form.description) }}
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <a href="{{ path('admin_education') }}" class="btn btn-default">
+                                        ← Volver
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-6 text-end">
+                                    <button class="btn btn-primary">
+                                        Guardar
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

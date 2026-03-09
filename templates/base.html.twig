@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}
+            {{ metatitle|default('Carlos Andreu') }}
+        {% endblock %}
+    </title>
+
+    <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    {% if app.request.attributes.get('_route') starts with 'admin_' == false %}
+        <link href="{{ asset('assets/css/styles.css') }}?v={{ "now"|date("U") }}" rel="stylesheet">
+    {% else %}
+        <link href="{{ asset('assets/css/admin.css') }}?v={{ "now"|date("U") }}" rel="stylesheet">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    {% endif %}
+
+
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body class="d-flex flex-column h-100 {{ body_class|default('') }}">
+
+    {% if app.request.attributes.get('_route') starts with 'admin_' == false %}
+        {% include 'partials/_nav.html.twig' %}
+    {% endif %}
+
+    <main class="flex-shrink-0">
+        {% block body %}{% endblock %}
+    </main>
+
+    {% include 'partials/_footer.html.twig' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+    {% block javascripts %}{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Admin | Education{% endblock %}
+
+{% block admin_content %}
+
+
+<h1 class="mb-4">Education</h1>
+
+<a href="{{ path('admin_education_new') }}" class="btn btn-primary mb-4">
+Add education
+</a>
+
+
+<table class="table table-striped">
+
+      <thead>
+
+      <tr>
+            <th>Period</th>
+            <th>Title</th>
+            <th>School</th>
+            <th></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      {% for edu in education %}
+
+            <tr>
+
+                  <td>
+
+                  {{ edu.startYear }} -
+
+                  {% if edu.current %}
+                  Present
+                  {% else %}
+                  {{ edu.endYear }}
+                  {% endif %}
+
+                  </td>
+
+                  <td>
+                  <strong>{{ edu.title }}</strong>
+                  </td>
+
+                  <td>
+                  {{ edu.schoolName }} — {{ edu.schoolCity }}
+                  </td>
+
+                  <td class="text-end">
+
+                        <a href="{{ path('admin_education_edit', {id: edu.id}) }}"
+                        class="btn btn-sm btn-warning">
+                        Edit
+                        </a>
+
+                        <form method="post"
+                              action="{{ path('admin_education_delete', {id: edu.id}) }}"
+                              style="display:inline">
+
+                              <input type="hidden"
+                              name="_token"
+                              value="{{ csrf_token('delete' ~ edu.id) }}">
+
+                              <button class="btn btn-sm btn-danger">
+                              Delete
+                              </button>
+                        </form>
+
+                  </td>
+
+            </tr>
+
+      {% else %}
+
+            <tr>
+
+            <td colspan="4">
+            No education yet.
+            </td>
+
+            </tr>
+
+      {% endfor %}
+
+      </tbody>
+
+</table>
+
+
+{% endblock %}

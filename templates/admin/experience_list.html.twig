@@ -1,0 +1,88 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Admin | Experience{% endblock %}
+
+{% block admin_content %}
+
+<h1 class="mb-4">Experience</h1>
+
+<a href="{{ path('admin_experience_new') }}" class="btn btn-primary mb-4">
+    Add experience
+</a>
+
+<table class="table table-striped">
+
+<thead>
+<tr>
+<th>Company</th>
+<th>Position</th>
+<th>City</th>
+<th>Period</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for exp in experiences %}
+
+<tr>
+
+<td>{{ exp.companyName }}</td>
+
+<td>{{ exp.position }}</td>
+
+<td>{{ exp.companyCity }}</td>
+
+<td>
+
+{{ exp.startDate|date('Y') }}
+
+-
+
+{% if exp.current %}
+Present
+{% else %}
+{{ exp.endDate ? exp.endDate|date('Y') : '' }}
+{% endif %}
+
+</td>
+
+<td class="text-end">
+
+<a href="{{ path('admin_experience_edit', {id: exp.id}) }}"
+   class="btn btn-sm btn-warning">
+Edit
+</a>
+
+<form method="post"
+      action="{{ path('admin_experience_delete', {id: exp.id}) }}"
+      style="display:inline">
+
+<input type="hidden"
+       name="_token"
+       value="{{ csrf_token('delete' ~ exp.id) }}">
+
+<button class="btn btn-sm btn-danger">
+Delete
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+<td colspan="5">No experience yet.</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

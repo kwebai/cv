@@ -1,0 +1,59 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Admin | Projects{% endblock %}
+
+{% block admin_content %}
+
+    <h1 class="mb-4">Projects</h1>
+
+    <a href="{{ path('admin_projects_new') }}" class="btn btn-primary mb-4">
+        + Nuevo proyecto
+    </a>
+
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th style="width:40px"></th>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="sortable" data-url="/admin/projects/reorder">
+        {% for project in projects %}
+            <tr data-id="{{ project.id }}">
+                <td class="drag-handle">☰</td>
+                <td>{{ project.id }}</td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.slug }}</td>
+                <td class="text-end">
+                    <a href="{{ path('admin_projects_edit', {id: project.id}) }}"
+                    class="btn btn-sm btn-warning">
+                        Editar
+                    </a>
+                    <form method="post"
+                        action="{{ path('admin_projects_delete', {id: project.id}) }}"
+                        style="display:inline-block"
+                        onsubmit="return confirm('¿Seguro que quieres eliminar este proyecto?');">
+
+                        <input type="hidden"
+                            name="_token"
+                            value="{{ csrf_token('delete' ~ project.id) }}">
+
+                        <button class="btn btn-sm btn-danger">
+                            Borrar
+                        </button>
+                    </form>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No hay proyectos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
