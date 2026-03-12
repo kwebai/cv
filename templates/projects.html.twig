@@ -21,9 +21,11 @@
                     <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                         <div class="card-body p-0">
                             <div class="row">
-                                <div class="col-sm-7 p-5">
-                                    <h2 class="fw-bolder">{{ project.title }}</h2>
-                                    <p>{{ project.description|raw }}</p>
+                                <div class="col-sm-7 p-5 d-flex align-items-center">
+                                    <div>
+                                        <h2 class="fw-bolder">{{ project.title }}</h2>
+                                        <p>{{ project.description|raw }}</p>
+                                    </div>
                                 </div>
                                 <div class="col-sm-5 d-flex align-items-center">
                                     <div><img class="img-fluid" src="{{ asset('uploads/' ~ project.image) }}" alt="{{project.title}}" /></div>
