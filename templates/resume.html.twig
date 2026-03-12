@@ -8,20 +8,23 @@
 
     <!-- Page Content-->
     <div class="container px-5 my-5">
-        <div class="text-center mb-5">
-            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Resume</span></h1>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-11 col-xl-9 col-xxl-9">
+                <h1 class="display-5 fw-bolder mb-2"><span class="text-gradient d-inline">Currículum vitae</span></h1>
+                <p class="lead fw-light mb-5 text-muted">En esta página encontrarás un resumen de mi experiencia profesional, las tecnologías con las que trabajo, mi formación y las principales habilidades que forman parte de mi perfil como desarrollador.</p>
+            </div>
         </div>
         <div class="row gx-5 justify-content-center">
-            <div class="col-lg-11 col-xl-9 col-xxl-8">
+            <div class="col-lg-11 col-xl-9 col-xxl-9">
                 <!-- Experience Section-->
                 <section>
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h2 class="text-primary fw-bolder mb-0">Experience</h2>
+                        <h2 class="text-primary fw-bolder mb-0">Experiencia</h2>
                         <!-- Download resume button-->
                         <!-- Note: Set the link href target to a PDF file within your project-->
                         <a class="btn btn-primary px-4 py-3" href="#!">
                             <div class="d-inline-block bi bi-download me-2"></div>
-                            Download Resume
+                            Descargar CV
                         </a>
                     </div>
 
@@ -81,9 +84,8 @@
                 <section>
 
                     <div class="d-flex align-items-center justify-content-between mb-4 mt-5">
-                        <h2 class="text-primary fw-bolder mb-0">Education</h2>
+                        <h2 class="text-primary fw-bolder mb-0">Formación</h2>
                     </div>
-
 
 
                     {% for edu in educations %}
@@ -139,7 +141,7 @@
                                         <i class="bi bi-tools"></i>
                                     </div>
                                     <h3 class="fw-bolder mb-0">
-                                        <span class="text-gradient d-inline">Professional Skills</span>
+                                        <span class="text-gradient d-inline">Habilidades profesionales</span>
                                     </h3>
                                 </div>
 
@@ -170,7 +172,7 @@
 
                                 <div class="d-flex align-items-center mb-4">
                                     <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
-                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Languages</span></h3>
+                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Lenguajes</span></h3>
                                 </div>
 
                                 {% for row in languages|batch(3) %}

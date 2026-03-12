@@ -1,12 +1,38 @@
         <footer class="bg-white py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">2026 Copyright &copy; www.carlosandreugasca.com</div></div>
+                    <div class="col-auto"><div class="small m-0">2026 Copyright &copy; www.candreug.com</div></div>
                     <div class="col-auto">
-                        <a class="small" href="#!">Privacy</a>
+                        <a class="small" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacidad</a>
                         <span class="mx-1">&middot;</span>
-                        <a class="small" href="{{ path('admin_login') }}"><i class="bi bi-person"></i> Private area</a>
+                        <a class="small" href="{{ path('admin_login') }}">Área privada</a>
                     </div>
                 </div>
             </div>
         </footer>
+
+        <div class="modal fade" id="privacyModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Política de privacidad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><b>Carlos Andreu Gasca</b> es el responsable de esta página web. A través de este sitio no se recogen datos personales de los usuarios salvo que estos los proporcionen voluntariamente mediante los medios de contacto disponibles.</p>
+                        
+                        <p>Los datos que puedan facilitarse se utilizarán únicamente para <b>responder a consultas o comunicaciones</b> iniciadas por el propio usuario. En ningún caso se utilizarán para realizar campañas comerciales ni serán cedidos, vendidos o compartidos con terceros.</p>
+                        
+                        <p>Esta web utiliza cookies de Google Analytics con el único objetivo de obtener estadísticas anónimas sobre el uso del sitio (como número de visitas o páginas consultadas). Esta información se utiliza exclusivamente para <b>mejorar el contenido y la experiencia de los usuarios</b>.</p>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>

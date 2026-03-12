@@ -3633,6 +3633,10 @@ textarea.form-control-lg {
   border-radius: 15px;
 }
 
+.btn-outline-light i {
+  margin-right: 5px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
