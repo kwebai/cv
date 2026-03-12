@@ -25,8 +25,8 @@
                                     <h2 class="fw-bolder">{{ project.title }}</h2>
                                     <p>{{ project.description|raw }}</p>
                                 </div>
-                                <div class="col-sm-5">
-                                    <img class="img-fluid" src="{{ asset('uploads/' ~ project.image) }}" alt="{{project.title}}" />
+                                <div class="col-sm-5 align-item-center">
+                                    <div><img class="img-fluid" src="{{ asset('uploads/' ~ project.image) }}" alt="{{project.title}}" /></div>
                                 </div>
                             </div>
                         </div>
