@@ -22,6 +22,9 @@ class Skill
     )]
     private ?string $name = null;
 
+    #[ORM\Column(type: 'integer')]
+    private ?int $ord = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +38,17 @@ class Skill
     public function setName(?string $name): static
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function getOrd(): ?int
+    {
+        return $this->ord;
+    }
+
+    public function setOrd(int $ord): static
+    {
+        $this->ord = $ord;
         return $this;
     }
 }
