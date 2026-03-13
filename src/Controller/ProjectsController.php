@@ -50,7 +50,7 @@ final class ProjectsController extends AbstractController
     // ---------------------------
 
     #[Route('/admin/projects/new', name: 'admin_projects_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, ProjectRepository $projectRepository): Response
     {
         $project = new Project();
         $project->setCreatedAt(new \DateTimeImmutable());
@@ -59,6 +59,9 @@ final class ProjectsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $last = $projectRepository->findOneBy([], ['position' => 'DESC']);
+            $project->setPosition($last ? $last->getPosition() + 1 : 1);
 
             $imageFile = $form->get('imageFile')->getData();
 

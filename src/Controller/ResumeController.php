@@ -193,6 +193,7 @@ final class ResumeController extends AbstractController
             'skill' => $repo->findBy([], ['ord' => 'ASC'])
         ]);
     }
+    
     #[Route('/admin/skill/new', name: 'admin_skill_new')]
     public function newSkill(Request $request, EntityManagerInterface $em): Response
     {
