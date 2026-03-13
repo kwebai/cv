@@ -17,23 +17,21 @@ Add skill
       <thead>
 
       <tr>
+            <th style="width:40px"></th>
             <th>Name</th>
             <th></th>
       </tr>
 
       </thead>
 
-      <tbody>
+      <tbody class="sortable" data-url="/admin/skills/reorder">
 
       {% for ski in skill %}
 
-            <tr>
-                  <td>
-
-                  {{ ski.name }}
-
-                  </td>
-
+            <tr data-id="{{ ski.id }}">
+                  
+                  <td class="drag-handle">☰</td>
+                  <td>{{ ski.name }}</td>
                   <td class="text-end">
 
                         <a href="{{ path('admin_skill_edit', {id: ski.id}) }}"

@@ -37,7 +37,7 @@ final class ResumeController extends AbstractController
     {
         $experiences = $repo->findBy([], ['startDate' => 'DESC']);
         $educations  = $educationRepo->findBy([], ['startYear' => 'DESC']);
-        $skills  = $skillRepo->findBy([], ['name' => 'ASC']);
+        $skills     = $skillRepo->findBy([], ['ord' => 'ASC']);
         $languages  = $languageRepo->findBy([], ['name' => 'ASC']);
 
         return $this->render('resume.html.twig', [
@@ -190,7 +190,7 @@ final class ResumeController extends AbstractController
     public function adminSkill(SkillRepository $repo): Response
     {
         return $this->render('admin/skill_list.html.twig', [
-            'skill' => $repo->findBy([], ['name' => 'ASC'])
+            'skill' => $repo->findBy([], ['ord' => 'ASC'])
         ]);
     }
     #[Route('/admin/skill/new', name: 'admin_skill_new')]
@@ -202,6 +202,9 @@ final class ResumeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $last = $skillRepository->findOneBy([], ['ord' => 'DESC']);
+            $skill->setOrd($last ? $last->getOrd() + 1 : 1);
 
             $em->persist($skill);
             $em->flush();
@@ -248,6 +251,26 @@ final class ResumeController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_skill');
+
+    }
+
+    #[Route('/admin/skills/reorder', name: 'admin_skills_reorder', methods: ['POST'])]
+    public function reorder(Request $request, SkillRepository $skillRepo, EntityManagerInterface $em): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        foreach ($data as $item) {
+
+            $skill = $skillRepo->find($item['id']);
+
+            if ($skill) {
+                $skill->setOrd($item['position']);
+            }
+        }
+
+        $em->flush();
+
+        return new Response('ok');
     }
 
 
