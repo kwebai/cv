@@ -20,6 +20,9 @@ class Language
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(type: 'integer')]
+    private ?int $ord = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +49,16 @@ class Language
     {
         $this->description = $description;
 
+        return $this;
+    }
+    public function getOrd(): ?int
+    {
+        return $this->ord;
+    }
+
+    public function setOrd(int $ord): static
+    {
+        $this->ord = $ord;
         return $this;
     }
 }

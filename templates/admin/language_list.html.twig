@@ -17,22 +17,20 @@ Add Language
       <thead>
 
       <tr>
+            <th style="width:40px"></th>
             <th>Name</th>
             <th></th>
       </tr>
 
       </thead>
 
-      <tbody>
+      <tbody class="sortable" data-url="/admin/language/reorder">
 
       {% for lan in language %}
 
-            <tr>
-                  <td>
-
-                  {{ lan.name }}
-
-                  </td>
+            <tr data-id="{{ lan.id }}">
+                  <td class="drag-handle"><i class="bi bi-grip-vertical"></i></td>
+                  <td>{{ lan.name }}</td>
 
                   <td class="text-end">
 

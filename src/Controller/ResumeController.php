@@ -38,7 +38,7 @@ final class ResumeController extends AbstractController
         $experiences = $repo->findBy([], ['startDate' => 'DESC']);
         $educations  = $educationRepo->findBy([], ['startYear' => 'DESC']);
         $skills     = $skillRepo->findBy([], ['ord' => 'ASC']);
-        $languages  = $languageRepo->findBy([], ['name' => 'ASC']);
+        $languages  = $languageRepo->findBy([], ['ord' => 'ASC']);
 
         return $this->render('resume.html.twig', [
             'metatitle'     => 'Carlos Andreu Gasca | Resume',
@@ -193,7 +193,7 @@ final class ResumeController extends AbstractController
             'skill' => $repo->findBy([], ['ord' => 'ASC'])
         ]);
     }
-    
+
     #[Route('/admin/skill/new', name: 'admin_skill_new')]
     public function newSkill(Request $request, EntityManagerInterface $em): Response
     {
@@ -283,7 +283,7 @@ final class ResumeController extends AbstractController
     public function adminLanguage(LanguageRepository $repo): Response
     {
         return $this->render('admin/language_list.html.twig', [
-            'language' => $repo->findBy([], ['name' => 'ASC'])
+            'language' => $repo->findBy([], ['ord' => 'ASC'])
         ]);
     }
     #[Route('/admin/language/new', name: 'admin_language_new')]
@@ -295,6 +295,9 @@ final class ResumeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $last = $LanguageRepository->findOneBy([], ['ord' => 'DESC']);
+            $language->setOrd($last ? $last->getOrd() + 1 : 1);
 
             $em->persist($language);
             $em->flush();
@@ -341,6 +344,25 @@ final class ResumeController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_language');
+    }
+
+    #[Route('/admin/language/reorder', name: 'admin_language_reorder', methods: ['POST'])]
+    public function reorderLanguage(Request $request, LanguageRepository $langRepo, EntityManagerInterface $em): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        foreach ($data as $item) {
+
+            $lang = $langRepo->find($item['id']);
+
+            if ($lang) {
+                $lang->setOrd($item['position']);
+            }
+        }
+
+        $em->flush();
+
+        return new Response('ok');
     }
 
 
