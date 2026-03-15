@@ -41,7 +41,7 @@ final class ResumeController extends AbstractController
         $languages  = $languageRepo->findBy([], ['ord' => 'ASC']);
 
         return $this->render('resume.html.twig', [
-            'metatitle'     => 'Carlos Andreu Gasca | Resume',
+            'metatitle'     => 'Carlos Andreu Gasca | Experiencia, Formación, Habilidades y Lenguages',
             'body_class'    => 'd-flex flex-column h-100 bg-light',
             'experiences'   => $experiences,
             'educations'    => $educations,

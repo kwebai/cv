@@ -11,7 +11,7 @@ final class HomeController extends AbstractController {
     #[Route('/', name: 'app_home')]
     public function index(): Response {
         return $this->render('home.html.twig', [
-            'metatitle' =>  'Carlos Andreu Gasca',
+            'metatitle' =>  'Carlos Andreu Gasca | Programador web full-stack',
             'body_class' => 'd-flex flex-column h-100'
         ]); 
     }

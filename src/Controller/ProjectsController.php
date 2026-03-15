@@ -23,7 +23,7 @@ final class ProjectsController extends AbstractController
         $projects = $projectRepository->findBy([], ['position' => 'ASC']);
 
         return $this->render('projects.html.twig', [
-            'metatitle'  => 'Carlos Andreu Gasca | Projects',
+            'metatitle'  => 'Carlos Andreu Gasca | Proyectos',
             'body_class' => 'd-flex flex-column h-100 bg-light',
             'projects'   => $projects
         ]);
